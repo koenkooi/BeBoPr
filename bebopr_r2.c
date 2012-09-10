@@ -91,17 +91,17 @@ static const pwm_config_record pwm_config_data[] = {
   {
     .tag		= pwm_extruder,
     .device_path	= PWM_PATH_PREFIX "ehrpwm.2:0",	// BEBOPR_R2_J3 - PWM1
-    .frequency		= 10,
+    .frequency		= 1000,
   },
   {
     .tag		= pwm_fan,
     .device_path	= PWM_PATH_PREFIX "ehrpwm.2:1",	// BEBOPR_R2_J2 - PWM0
-    .frequency		= 0,         // frequency is determined by ehrpwm.2:0 !
+    .frequency		= 1000,         // frequency is determined by ehrpwm.2:0 !
   },
   {
     .tag		= pwm_bed,
     .device_path	= PWM_PATH_PREFIX "ehrpwm.1:0",	// BEBOPR_R2_J4 - PWM2
-    .frequency		= 10,
+    .frequency		= 1000,
   },
 #endif
 };
@@ -119,7 +119,7 @@ static const heater_config_record heater_config_data[] = {
 	    .P = 15.0,
 	    .I = 0.0,
 	    .D = 0.0,
-	    .I_limit = 10.0,
+	    .I_limit = 100,
     },
   },
   {
@@ -133,7 +133,7 @@ static const heater_config_record heater_config_data[] = {
 	    .P = 10.0,
 	    .I = 0.0,
 	    .D = 0.0,
-	    .I_limit = 0.0,
+	    .I_limit = 100,
     },
   },
 #endif
@@ -204,9 +204,9 @@ int config_axis_has_max_limit_switch( axis_e axis)
 int config_min_limit_switch_is_active_low( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 1;
+  case x_axis:	return 0;
   case y_axis:	return 1;
-  case z_axis:	return 0;
+  case z_axis:	return 1;
   default:      return 0;
   }
 }
@@ -232,33 +232,10 @@ int config_use_pololu_drivers( void)
 double config_get_step_size( axis_e axis)
 {
   switch (axis) {
-#if 1
- /*
-  *  TEST RIG
-  *
-  *  X: 1:8  stepping, 1.8' motor, 8t pulley @ 5mm pitch => (8x5)/(8*360/1.8) => 0.0125 mm
-  *  Y: 1:8  stepping, 1.8' motor, 8t pulley @ 5mm pitch => (8x5)/(8*360/1.8) => 0.0125 mm
-  *  Z: 1:8  stepping, 1.8' motor, 1:1 reduction @ 1.25mm /rev => (1.25)/(8*360/1.8) => 0.0007812 mm
-  *  E: 1:8  stepping, 1.8' motor, 11:39 reduction @ ??mm /rev => (11/39*19)/(8*360/1.8) => 0.00335 mm
-  */
-  case x_axis:	return 12.5E-6;
-  case y_axis:	return 12.5E-6;
-  case z_axis:	return 0.7812E-6;
-  case e_axis:	return 3.35E-6;
-#else
- /*
-  *  PRUSA
-  *
-  *  X: 1:8  stepping, 0.9' motor, 16t pulley @ 3mm pitch => (16x3)/(8*360/0.9) => 0.015 mm
-  *  Y: 1:8  stepping, 0.9' motor, 8t pulley @ 5mm pitch => (8x5)/(8*360/0.9) => 0.0125 mm
-  *  Z: 1:32 stepping, 1.8' motor, 1:1 reduction @ 1.25mm /rev => (1.25)/(32*360/1.8) => 0.0001953125 mm
-  *  E: 1:8  stepping, 1.8' motor, 11:39 reduction @ ??mm /rev => (11/39*19)/(8*360/1.8) => 0.003345 mm
-  */
-  case x_axis:	return 15.0E-6;
-  case y_axis:	return 12.5E-6;
-  case z_axis:	return 195.3125E-9;
-  case e_axis:	return 3.345E-6;
-#endif
+  case x_axis:	return 1.0622511E-5;
+  case y_axis:	return 1.0622511E-5;
+  case z_axis:	return 0.79E-6; //0.390125E-6;
+  case e_axis:	return 2.1875E-6;
   default:	return 0.0;
   }
 }
@@ -283,10 +260,10 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 3.0;
-  case y_axis:	return 3.0;
-  case z_axis:	return 1.0;
-  case e_axis:	return 1.0;
+  case x_axis:	return 2.5;
+  case y_axis:	return 4.3;
+  case z_axis:	return 1.5;
+  case e_axis:	return 2.5;
   default:	return 0.0;
   }
 }
@@ -297,10 +274,10 @@ double config_get_max_accel( axis_e axis)
 int config_reverse_axis( axis_e axis)
 {
   switch (axis) {
-  case x_axis:  return 0;
-  case y_axis:	return 1;
+  case x_axis:  return 1;
+  case y_axis:	return 0;
   case z_axis:	return 1;
-  case e_axis:	return 0;
+  case e_axis:	return 1;
   default:	return 0;
   }
 }
