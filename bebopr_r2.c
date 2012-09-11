@@ -116,9 +116,9 @@ static const heater_config_record heater_config_data[] = {
     {
 	    .FF_factor = 0.33,
 	    .FF_offset = 40.0,
-	    .P = 15.0,
-	    .I = 0.0,
-	    .D = 0.0,
+	    .P = 1.0,
+	    .I = 7.0,
+	    .D = 10.0,
 	    .I_limit = 100,
     },
   },
@@ -131,8 +131,8 @@ static const heater_config_record heater_config_data[] = {
 	    .FF_factor = 0.4,
 	    .FF_offset = 5.0,
 	    .P = 10.0,
-	    .I = 0.0,
-	    .D = 0.0,
+	    .I = 0.5,
+	    .D = 36.0,
 	    .I_limit = 100,
     },
   },
@@ -235,7 +235,7 @@ double config_get_step_size( axis_e axis)
   case x_axis:	return 1.0622511E-5;
   case y_axis:	return 1.0622511E-5;
   case z_axis:	return 0.79E-6; //0.390125E-6;
-  case e_axis:	return 2.1875E-6;
+  case e_axis:	return 0.625E-6;
   default:	return 0.0;
   }
 }
@@ -247,9 +247,9 @@ double config_get_max_feed( axis_e axis)
 {
   switch (axis) {
   case x_axis:	return 22500.0;	// 0.00625 mm/step @ 60 kHz
-  case y_axis:	return 16000.0;	// 0.00625 mm/step @ 53 kHz
-  case z_axis:	return   300.0; // 0.00039 mm/step @ 13 kHz
-  case e_axis:	return  3000.0; // 0.00198 mm/step @ 25 kHz
+  case y_axis:	return 22500.0;	// 0.00625 mm/step @ 53 kHz
+  case z_axis:	return  2000.0; // 0.00039 mm/step @ 60 kHz
+  case e_axis:	return  1000.0;
   default:	return 0.0;
   }
 }
@@ -260,8 +260,8 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 2.5;
-  case y_axis:	return 4.3;
+  case x_axis:	return 3.5;
+  case y_axis:	return 3.5;
   case z_axis:	return 1.5;
   case e_axis:	return 2.5;
   default:	return 0.0;
@@ -277,7 +277,7 @@ int config_reverse_axis( axis_e axis)
   case x_axis:  return 1;
   case y_axis:	return 0;
   case z_axis:	return 1;
-  case e_axis:	return 1;
+  case e_axis:	return 0;
   default:	return 0;
   }
 }
@@ -303,9 +303,9 @@ int config_min_soft_limit( axis_e axis, double* pos)
 int config_max_soft_limit( axis_e axis, double* pos)
 {
   switch (axis) {
-  case x_axis:	*pos = 215.0; return 1;
-  case y_axis:	*pos = 200.0; return 1;
-  case z_axis:	*pos =  60.0; return 1;
+  case x_axis:	*pos = 120.0; return 1;
+  case y_axis:	*pos = 110.0; return 1;
+  case z_axis:	*pos = 130.0; return 1;
   default:	return 0;
   }
 }
@@ -378,9 +378,9 @@ double config_get_home_release_feed( axis_e axis)
 double config_get_home_max_feed( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 3000.0;
-  case y_axis:	return 3000.0;
-  case z_axis:	return  450.0;
+  case x_axis:	return 5000.0;
+  case y_axis:	return 5000.0;
+  case z_axis:	return 1000.0;
   default:	return    0.0;
   }
 }
