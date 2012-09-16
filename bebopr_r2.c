@@ -49,7 +49,7 @@ static const analog_config_record analog_config_data[] = {
   {
     .tag                = bed_thermistor,
     .device_path	= AIN_PATH_PREFIX "ain2",	// BEBOPR_R2_J6 - THRM0 (hardware ain1)
-    .filter_length	= 50,
+    .filter_length	= 30,
   },
   {
     .tag                = spare_ain,
@@ -59,7 +59,7 @@ static const analog_config_record analog_config_data[] = {
   {
     .tag                = extruder_thermistor,
     .device_path	= AIN_PATH_PREFIX "ain6",	// BEBOPR_R2_J8 - THRM2 (hardware ain5)
-    .filter_length	= 50,
+    .filter_length	= 30,
   },
 };
 
