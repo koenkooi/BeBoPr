@@ -59,7 +59,7 @@ static const analog_config_record analog_config_data[] = {
   {
     .tag                = extruder_thermistor,
     .device_path	= AIN_PATH_PREFIX "ain6",	// BEBOPR_R2_J8 - THRM2 (hardware ain5)
-    .filter_length	= 30,
+    .filter_length	= 20,
   },
 };
 
@@ -260,8 +260,8 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 3.5;
-  case y_axis:	return 3.5;
+  case x_axis:	return 2.5;
+  case y_axis:	return 2.5;
   case z_axis:	return 1.5;
   case e_axis:	return 2.5;
   default:	return 0.0;
