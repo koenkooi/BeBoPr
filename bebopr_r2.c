@@ -246,10 +246,10 @@ double config_get_step_size( axis_e axis)
 double config_get_max_feed( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 22500.0;	// 0.00625 mm/step @ 60 kHz
-  case y_axis:	return 22500.0;	// 0.00625 mm/step @ 53 kHz
-  case z_axis:	return  2000.0; // 0.00039 mm/step @ 60 kHz
-  case e_axis:	return  1000.0;
+  case x_axis:	return 25000.0;	// 0.00625 mm/step @ 60 kHz
+  case y_axis:	return 25000.0;	// 0.00625 mm/step @ 53 kHz
+  case z_axis:	return  2400.0; // 0.00039 mm/step @ 60 kHz
+  case e_axis:	return  1500.0;
   default:	return 0.0;
   }
 }
@@ -262,7 +262,7 @@ double config_get_max_accel( axis_e axis)
   switch (axis) {
   case x_axis:	return 2.5;
   case y_axis:	return 2.5;
-  case z_axis:	return 1.5;
+  case z_axis:	return 1.4;
   case e_axis:	return 2.5;
   default:	return 0.0;
   }
