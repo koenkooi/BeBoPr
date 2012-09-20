@@ -191,7 +191,7 @@ int config_axis_has_min_limit_switch( axis_e axis)
 int config_axis_has_max_limit_switch( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 0;
+  case x_axis:	return 1;
   case y_axis:	return 0;
   case z_axis:	return 1;
   default:      return 0;
