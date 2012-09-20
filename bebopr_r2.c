@@ -303,7 +303,7 @@ int config_min_soft_limit( axis_e axis, double* pos)
 int config_max_soft_limit( axis_e axis, double* pos)
 {
   switch (axis) {
-  case x_axis:	*pos = 120.0; return 1;
+  case x_axis:	*pos = 123.0; return 1;
   case y_axis:	*pos = 110.0; return 1;
   case z_axis:	*pos = 130.0; return 1;
   default:	return 0;
