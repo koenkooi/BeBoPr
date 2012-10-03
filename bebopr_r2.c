@@ -260,8 +260,8 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 2.5;
-  case y_axis:	return 2.5;
+  case x_axis:	return 1.5;
+  case y_axis:	return 1.5;
   case z_axis:	return 1.4;
   case e_axis:	return 2.5;
   default:	return 0.0;
