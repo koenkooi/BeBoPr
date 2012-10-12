@@ -116,9 +116,9 @@ static const heater_config_record heater_config_data[] = {
     {
 	    .FF_factor = 0.33,
 	    .FF_offset = 40.0,
-	    .P = 1.0,
-	    .I = 7.0,
-	    .D = 10.0,
+	    .P = 0.5,
+	    .I = 0.1,
+	    .D = 3.0,
 	    .I_limit = 100,
     },
   },
@@ -249,7 +249,7 @@ double config_get_max_feed( axis_e axis)
   case x_axis:	return 25000.0;	// 0.00625 mm/step @ 60 kHz
   case y_axis:	return 25000.0;	// 0.00625 mm/step @ 53 kHz
   case z_axis:	return  2400.0; // 0.00039 mm/step @ 60 kHz
-  case e_axis:	return  1500.0;
+  case e_axis:	return  1000.0;
   default:	return 0.0;
   }
 }
@@ -260,10 +260,10 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 1.5;
-  case y_axis:	return 1.5;
+  case x_axis:	return 2.0;
+  case y_axis:	return 2.5;
   case z_axis:	return 1.4;
-  case e_axis:	return 2.5;
+  case e_axis:	return 1.5;
   default:	return 0.0;
   }
 }
