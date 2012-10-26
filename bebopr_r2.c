@@ -117,7 +117,7 @@ static const heater_config_record heater_config_data[] = {
 	    .FF_factor = 0.33,
 	    .FF_offset = 40.0,
 	    .P = 0.5,
-	    .I = 0.1,
+	    .I = 0.15,
 	    .D = 3.0,
 	    .I_limit = 100,
     },
