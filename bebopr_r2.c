@@ -114,12 +114,12 @@ static const heater_config_record heater_config_data[] = {
     .analog_output	= pwm_extruder,
     .pid =
     {
-	    .FF_factor = 0.33,
+	    .FF_factor = 0.30,
 	    .FF_offset = 40.0,
-	    .P = 0.5,
-	    .I = 0.15,
+	    .P = 1,
+	    .I = 0.18,
 	    .D = 3.0,
-	    .I_limit = 100,
+	    .I_limit = 60,
     },
   },
   {
@@ -232,8 +232,8 @@ int config_use_pololu_drivers( void)
 double config_get_step_size( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 1.0622511E-5;
-  case y_axis:	return 1.0622511E-5;
+  case x_axis:	return 0.5311255E-5;
+  case y_axis:	return 0.5311255E-5;
   case z_axis:	return 0.79E-6; //0.390125E-6;
   case e_axis:	return 0.625E-6;
   default:	return 0.0;
@@ -246,8 +246,8 @@ double config_get_step_size( axis_e axis)
 double config_get_max_feed( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 25000.0;	// 0.00625 mm/step @ 60 kHz
-  case y_axis:	return 25000.0;	// 0.00625 mm/step @ 53 kHz
+  case x_axis:	return 15000.0;	// 0.00625 mm/step @ 60 kHz
+  case y_axis:	return 15000.0;	// 0.00625 mm/step @ 53 kHz
   case z_axis:	return  2400.0; // 0.00039 mm/step @ 60 kHz
   case e_axis:	return  1000.0;
   default:	return 0.0;
@@ -260,10 +260,10 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 2.0;
-  case y_axis:	return 2.5;
-  case z_axis:	return 1.4;
-  case e_axis:	return 1.5;
+  case x_axis:	return 1.9;
+  case y_axis:	return 1.9;
+  case z_axis:	return 1.2;
+  case e_axis:	return 1.2;
   default:	return 0.0;
   }
 }
@@ -274,8 +274,8 @@ double config_get_max_accel( axis_e axis)
 int config_reverse_axis( axis_e axis)
 {
   switch (axis) {
-  case x_axis:  return 1;
-  case y_axis:	return 0;
+  case x_axis:  return 0;
+  case y_axis:	return 1;
   case z_axis:	return 1;
   case e_axis:	return 0;
   default:	return 0;
@@ -304,7 +304,7 @@ int config_max_soft_limit( axis_e axis, double* pos)
 {
   switch (axis) {
   case x_axis:	*pos = 123.0; return 1;
-  case y_axis:	*pos = 110.0; return 1;
+  case y_axis:	*pos = 98.0; return 1;
   case z_axis:	*pos = 130.0; return 1;
   default:	return 0;
   }
