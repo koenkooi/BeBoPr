@@ -75,7 +75,7 @@ static const temp_config_record temp_config_data[] = {
     .tag                = temp_bed,
     .source		= bed_thermistor,
     .in_range_time	= 15000,
-    .conversion		= bone_bed_thermistor_330k,
+    .conversion		= bone_epcos_b5760g104f,
   },
 #endif
 };
