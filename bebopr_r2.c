@@ -91,12 +91,12 @@ static const pwm_config_record pwm_config_data[] = {
   {
     .tag		= pwm_extruder,
     .device_path	= PWM_PATH_PREFIX "ehrpwm.2:0",	// BEBOPR_R2_J3 - PWM1
-    .frequency		= 40,
+    .frequency		= 1000,
   },
   {
     .tag		= pwm_fan,
     .device_path	= PWM_PATH_PREFIX "ehrpwm.2:1",	// BEBOPR_R2_J2 - PWM0
-    .frequency		= 0,         // frequency is determined by ehrpwm.2:0 !
+    .frequency		= 1000,         // frequency is determined by ehrpwm.2:0 !
   },
   {
     .tag		= pwm_bed,
@@ -235,7 +235,7 @@ double config_get_step_size( axis_e axis)
   case x_axis:	return 1.11386138E-5;
   case y_axis:	return 1.11386138E-5;
   case z_axis:	return 2.5E-6;
-  case e_axis:	return 2.12089077E-6;
+  case e_axis:	return 2.03605514-6;
   default:	return 0.0;
   }
 }
@@ -303,9 +303,9 @@ int config_min_soft_limit( axis_e axis, double* pos)
 int config_max_soft_limit( axis_e axis, double* pos)
 {
   switch (axis) {
-  case x_axis:	*pos = 215.0; return 1;
-  case y_axis:	*pos = 200.0; return 1;
-  case z_axis:	*pos = 250.0; return 1;
+  case x_axis:	*pos = 225.0; return 1;
+  case y_axis:	*pos = 255.0; return 1;
+  case z_axis:	*pos = 150.0; return 1;
   default:	return 0;
   }
 }
