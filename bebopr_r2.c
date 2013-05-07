@@ -232,10 +232,10 @@ int config_use_pololu_drivers( void)
 double config_get_step_size( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 1.11386138E-5;
-  case y_axis:	return 1.11386138E-5;
-  case z_axis:	return 2.5E-6;
-  case e_axis:	return 2.03605514-6;
+  case x_axis:	return 0.55693069E-5;
+  case y_axis:	return 0.55693069E-5;
+  case z_axis:	return 1.25E-6;
+  case e_axis:	return 1.01802757E-6;
   default:	return 0.0;
   }
 }
@@ -246,10 +246,10 @@ double config_get_step_size( axis_e axis)
 double config_get_max_feed( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 22500.0;	// 0.00625 mm/step @ 60 kHz
-  case y_axis:	return 16000.0;	// 0.00625 mm/step @ 53 kHz
-  case z_axis:	return   300.0; // 0.00039 mm/step @ 13 kHz
-  case e_axis:	return  3000.0; // 0.00198 mm/step @ 25 kHz
+  case x_axis:	return 32500.0;	// 0.00625 mm/step @ 60 kHz
+  case y_axis:	return 32500.0;	// 0.00625 mm/step @ 53 kHz
+  case z_axis:	return  5000.0; // 0.00039 mm/step @ 13 kHz
+  case e_axis:	return  2000.0; // 0.00198 mm/step @ 25 kHz
   default:	return 0.0;
   }
 }
@@ -260,8 +260,8 @@ double config_get_max_feed( axis_e axis)
 double config_get_max_accel( axis_e axis)
 {
   switch (axis) {
-  case x_axis:	return 3.0;
-  case y_axis:	return 3.0;
+  case x_axis:	return 2.0;
+  case y_axis:	return 1.2;
   case z_axis:	return 1.0;
   case e_axis:	return 1.0;
   default:	return 0.0;
@@ -274,10 +274,10 @@ double config_get_max_accel( axis_e axis)
 int config_reverse_axis( axis_e axis)
 {
   switch (axis) {
-  case x_axis:  return 1;
-  case y_axis:	return 0;
-  case z_axis:	return 1;
-  case e_axis:	return 0;
+  case x_axis:  return 0;
+  case y_axis:	return 1;
+  case z_axis:	return 0;
+  case e_axis:	return 1;
   default:	return 0;
   }
 }
@@ -323,7 +323,7 @@ int config_max_soft_limit( axis_e axis, double* pos)
  */
 static double x_cal_pos = 0.0;
 static double y_cal_pos = 0.0;
-static double z_cal_pos = -2.7955E-3;	// sensor 2.8 mm below table level
+static double z_cal_pos = 0.0;
 
 int config_set_cal_pos( axis_e axis, double pos)
 {
@@ -380,7 +380,7 @@ double config_get_home_max_feed( axis_e axis)
   switch (axis) {
   case x_axis:	return 3000.0;
   case y_axis:	return 3000.0;
-  case z_axis:	return  450.0;
+  case z_axis:	return 2000.0;
   default:	return    0.0;
   }
 }
